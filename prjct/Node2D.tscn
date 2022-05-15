@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Cave & Sewer/New_Piskel_1.png" type="Texture" id=1]
+[ext_resource path="res://Cave & Sewer/cave_sewer_tileset.png" type="Texture" id=2]
+[ext_resource path="res://player.gd" type="Script" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 1.90934, 2.00149, 4, 4, 4, 4, 4, 4 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 94.6159, 67.583, 2.5043, 67.583, 2.5043, 2.54237, 94.6159, 2.54237 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "cave_sewer_tileset.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 16, 12, 96, 68 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 20.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 6, 0, 0, 12, 0, 0, 18, 0, 0, 24, 0, 0, 30, 0, 0, 36, 0, 0, 42, 0, 0 )
+
+[node name="player" type="KinematicBody2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="player"]
+position = Vector2( 55, -30 )
+scale = Vector2( 0.473607, 0.387252 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 50, -25 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+smoothing_enabled = true

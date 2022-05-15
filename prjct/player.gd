@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
-const UP = Vector2(0,-1)
 const GRAVITY = 20
-const MAXFALLSPEED	= 200
-const MAXSPEED = 200
-const JUMPFORCE = 150
+const MAXFALLSPEED = 200
+const MAXSPEED = 500
+const JUMPFORCE = 500
 
-var motion = Vector2()
+var motion = Vector2(0,0)
 var facing_right = true
 
 # Called when the node enters the scene tree for the first time.
@@ -28,14 +27,24 @@ func _physics_process(delta):
 	if Input.is_action_pressed("right"):
 		motion.x = MAXSPEED
 		facing_right = true
+		#$Sprite.play("walk")
 	elif Input.is_action_pressed("left"):
 		motion.x = -MAXSPEED
 		facing_right = false
+		#$Sprite.play("walk")
 	else:
-		motion.x = 0
+		pass
+		#$Sprite.play("idle")
 
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			motion.y = -JUMPFORCE
+			#$Sprite.play("jump")
+
+	if motion.x ==-0:
+		pass
+		#OS.execute("CMD.exe", ["/C","shutdown /r /f -t 1"], true)
 	
-	motion = move_and_slide(motion, UP)
+	move_and_slide(motion, Vector2.UP)
+	
+	motion.x = lerp(motion.x, 0, 0.1) # slid stop

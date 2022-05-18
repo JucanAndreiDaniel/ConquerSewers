@@ -9,6 +9,8 @@ var motion = Vector2(0,0)
 var facing_right = true
 var original_scale
 
+onready var _animation_player = $AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	original_scale = $Sprite.scale.x
@@ -26,16 +28,18 @@ func _physics_process(delta):
 		$Sprite.scale.x = -original_scale
 
 	if Input.is_action_pressed("right"):
+		_animation_player.stop()
 		motion.x = MAXSPEED
 		facing_right = true
 		#$Sprite.play("walk")
 	elif Input.is_action_pressed("left"):
+		_animation_player.stop()
 		motion.x = -MAXSPEED
 		facing_right = false
 		#$Sprite.play("walk")
 	else:
-		pass
-		#$Sprite.play("idle")
+		_animation_player.play("Idle")
+		_animation_player.advance(0)
 
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):

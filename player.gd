@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 const GRAVITY = 20
-const MAXFALLSPEED = 200
-const MAXSPEED = 500
-const JUMPFORCE = 500
+const MAXFALLSPEED = 300
+const MAXSPEED = 300
+const JUMPFORCE = 350
 
 var motion = Vector2(0,0)
 var facing_right = true

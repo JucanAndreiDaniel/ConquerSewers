@@ -28,18 +28,15 @@ func _physics_process(delta):
 		$Sprite.scale.x = -original_scale
 
 	if Input.is_action_pressed("right"):
-		_animation_player.stop()
 		motion.x = MAXSPEED
 		facing_right = true
-		#$Sprite.play("walk")
+		_animation_player.play("Run")
 	elif Input.is_action_pressed("left"):
-		_animation_player.stop()
 		motion.x = -MAXSPEED
 		facing_right = false
-		#$Sprite.play("walk")
+		_animation_player.play("Run")
 	else:
 		_animation_player.play("Idle")
-		_animation_player.advance(0)
 
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):

@@ -7,10 +7,11 @@ const JUMPFORCE = 500
 
 var motion = Vector2(0,0)
 var facing_right = true
+var original_scale
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	original_scale = $Sprite.scale.x
 
 
 func _physics_process(delta):
@@ -20,9 +21,9 @@ func _physics_process(delta):
 		motion.y = MAXFALLSPEED
 
 	if facing_right == true:
-		$Sprite.scale.x = 1
+		$Sprite.scale.x = original_scale
 	else:
-		$Sprite.scale.x = -1
+		$Sprite.scale.x = -original_scale
 
 	if Input.is_action_pressed("right"):
 		motion.x = MAXSPEED

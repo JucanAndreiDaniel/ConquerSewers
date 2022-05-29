@@ -43,10 +43,11 @@ func _physics_process(delta):
 			motion.y = -JUMPFORCE
 			#$Sprite.play("jump")
 
-	if motion.x ==-0:
-		pass
+	if motion.x == -0:
+		get_tree().reload_current_scene()
 		#OS.execute("CMD.exe", ["/C","shutdown /r /f -t 1"], true)
+		
 	
 	move_and_slide(motion, Vector2.UP)
 	
-	motion.x = lerp(motion.x, 0, 0.1) # slid stop
+	motion.x = lerp(motion.x, 0, 0.5) # slid stop
